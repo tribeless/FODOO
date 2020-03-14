@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FODOO</string>
+    <string name="txt_1">PIZZERA</string>
+    <string name="txt_2">Collection of different \n pizzas</string>
+    <string name="txt_3">We have a wide variety of pizzas \n
+ just for your satisfaction</string>
+    <string name="btn_1">Next</string>
+    <string name="txt_4">SKIP</string>
+    <string name="sec_onbord_txt">Fast delivery to your\n location</string>
+    <string name="sec_onbord_txt_2">Get your order delivered\n to you in minutes</string>
+    <string name="thd_onbord_txt">Pay On\nDelivery</string>
+    <string name="thd_onbord_txt_2">Pay for your pizza once it\ngets to your doorstep</string>
+    <string name="pop_up">Allow us to\n access your\n location to\n offer you the\n best service</string>
+    <string name="pop_btn_name">Allow</string>
+    <string name="pop_btn_name2">Not now</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBbYw5ZHkpUvAnK3T-lEDxh3MaTvYUt5dA</string>
+</resources>
