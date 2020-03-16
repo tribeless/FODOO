@@ -87,6 +87,45 @@ public class SignIn extends AppCompatActivity {
             }
 
         });
+ }
 
-    }
+  /* //init database
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+        log_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        //check if user exists
+                        if(dataSnapshot.child(phone_num.getText().toString()).exists()){
+                            User user = dataSnapshot.child(phone_num.getText().toString()).getValue(User.class);
+                            assert user!=null;
+
+                            if (user.getPassword().equals(pass_word.getText().toString())){
+                                Toast.makeText(SignIn.this,"Log in successful",Toast.LENGTH_LONG).show();
+                                progress.setVisibility(View.INVISIBLE);
+                            }else{
+
+                                Toast.makeText(SignIn.this,"Password incorrect",Toast.LENGTH_LONG).show();
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        }else{
+                            Toast.makeText(SignIn.this,"User does not exist",Toast.LENGTH_LONG).show();
+                            progress.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });*/
 }

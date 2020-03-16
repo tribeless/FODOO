@@ -74,5 +74,37 @@ public class SignUp extends AppCompatActivity {
                 });
             }
         });
+
+       /* FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        //check if number already exists
+
+                        if(dataSnapshot.child(phone_num.getText().toString()).exists()){
+
+                            Toast.makeText(SignUp.this,"User already exists",Toast.LENGTH_LONG).show();
+                        }else{
+
+                            User user = new User(usr_name.getText().toString(),usr_pass.getText().toString());
+                            databaseReference.child(phone_num.getText().toString()).setValue(user);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });*/
     }
 }
