@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -34,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
     Animation top_animation,bottom_animation;
     ImageView img_View;
     TextView txt_View;
+    Button sign,log;
 
 
    // Button btn_1,btn_2,btn;
-    LocationManager locationManager;
-    LocationListener locationListener;
+   /* LocationManager locationManager;
+    LocationListener locationListener;*/
 
 
 
@@ -46,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
 
-
-
-        top_animation = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottom_animation = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottom_animation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
         img_View = findViewById(R.id.imageView);
         txt_View = findViewById(R.id.textView);
        /* btn_1 = findViewById(R.id.pop_btn_1);
@@ -61,7 +61,34 @@ public class MainActivity extends AppCompatActivity {
 
         img_View.setAnimation(top_animation);
         txt_View.setAnimation(bottom_animation);
+        sign = findViewById(R.id.sign_up);
+        log = findViewById(R.id.log_in);
+        sign.setAnimation(bottom_animation);
+        log.setAnimation(bottom_animation);
 
+        /*Typeface face = getResources().getFont(R.font.thebomb);
+        txt_View.setTypeface(face);*/
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/thebomb.ttf");
+        txt_View.setTypeface(typeface);
+
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent= new Intent(MainActivity.this,SignUp.class);
+                startActivity(intent);
+            }
+        });
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MainActivity.this,SignIn.class);
+                startActivity(i);
+            }
+        });
+
+    }
 
       /*  btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-displayDialog();
+//displayDialog();
 
-    }
 
-    @Override
+
+   /* @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -88,9 +115,9 @@ displayDialog();
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
+    }*/
 
-    public void displayDialog(){
+   /* public void displayDialog(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LinearLayout layout  = new LinearLayout(this);

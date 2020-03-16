@@ -13,5 +13,14 @@
     <string name="pop_up">Allow us to\n access your\n location to\n offer you the\n best service</string>
     <string name="pop_btn_name">Allow</string>
     <string name="pop_btn_name2">Not now</string>
+    <string name="sign">Sign Up</string>
+    <string name="log">Log In</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBbYw5ZHkpUvAnK3T-lEDxh3MaTvYUt5dA</string>
+    <string name="hnt">Phone number</string>
+    <string name="hnt_name">Name </string>
+    <string name="hnt_pass">Password</string>
+    <string name="txt_user">0984637377</string>
+    <string name="txt_user_sign_up">0984677477</string>
+    <string name="txt_name">Kanana</string>
+    <string name="txt_pass">1234</string>
 </resources>

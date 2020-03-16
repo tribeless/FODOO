@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "904878661256",
+    "firebase_url": "https://fodoo-5e9b9.firebaseio.com",
+    "project_id": "fodoo-5e9b9",
+    "storage_bucket": "fodoo-5e9b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904878661256:android:6983d4fee857110ea6c93d",
+        "android_client_info": {
+          "package_name": "com.example.fodoo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904878661256-1ev2foahai6ceqb4v9sobaeiba77f4aa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fodoo",
+            "certificate_hash": "ac26c76e58b9315d4aaffed08da2c67d2b783982"
+          }
+        },
+        {
+          "client_id": "904878661256-4c95lhajt3272h4pnjgpsckbk5gjhvl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-hwEetCsxWDzSnE7NiFwYcMT9mA-6VT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904878661256-4c95lhajt3272h4pnjgpsckbk5gjhvl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
