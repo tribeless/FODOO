@@ -7,4 +7,7 @@
     <color name="color_concrete_shadow">#3E6983</color>
     <color name="color_wisteria">#8e44ad</color>
     <color name="color_asbestos">#724288</color>
+    <color name="overlayBackground">#7f333639</color>
+    <color name="overlayActionbar">#0e0d0e</color>
+
 </resources>

@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         new_Progress = findViewById(R.id.new_progressBar);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+        final DatabaseReference databaseReference = firebaseDatabase.getReference("user");
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override

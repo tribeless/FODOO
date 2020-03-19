@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fodoo.Common.Common;
 import com.example.fodoo.Model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,14 +70,19 @@ public class SignIn extends AppCompatActivity {
                         //check if password is correct
                         if(user.getPassword().equals(pass_word.getText().toString())){
 
+                            Intent homeIntent = new Intent(SignIn.this,Home.class);
+                            Common.currentUser = user;
+                            startActivity(homeIntent);
                             Toast.makeText(SignIn.this,"Sign in successful",Toast.LENGTH_SHORT).show();
                             progress.setVisibility(View.INVISIBLE);
+                            finish();
 
                         }else{
                             Toast.makeText(SignIn.this,"Wrong password",Toast.LENGTH_SHORT).show();
+                            progress.setVisibility(View.INVISIBLE);
                         }}
                         //if phone num doesn't exist
-                        else{Toast.makeText(SignIn.this,"User does not exist",Toast.LENGTH_SHORT).show();}
+                        else{Toast.makeText(SignIn.this,"User does not exist",Toast.LENGTH_SHORT).show(); progress.setVisibility(View.INVISIBLE);}
                     }
 
                     @Override
