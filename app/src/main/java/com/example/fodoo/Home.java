@@ -1,5 +1,6 @@
 package com.example.fodoo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fodoo.Common.Common;
@@ -46,6 +47,7 @@ public class Home extends AppCompatActivity {
 
    RecyclerView recyclerView;
    RecyclerView.LayoutManager layoutManager;
+    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,24 +108,29 @@ public class Home extends AppCompatActivity {
 
     private void loadMenu() {
 
-        FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category) {
+
+         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category) {
             @Override
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
 
                 menuViewHolder.txtMenuName.setText(category.getName());
                 Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
-                final Category clickItem = category;
+                //final Category clickItem = category;
 
                 //item-click-listener class
                 menuViewHolder.setItemClickListener(new itemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this,"" + clickItem.getName(),Toast.LENGTH_SHORT).show();
+                        Intent foodIntent = new Intent(Home.this,FoodList.class);
+                        foodIntent.putExtra("CategoryId",adapter.getRef(position).getKey());
+                        startActivity(foodIntent);
+
                     }
                 });
             }
         };
         recyclerView.setAdapter(adapter);
+
     }
 
 

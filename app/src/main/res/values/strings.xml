@@ -20,7 +20,8 @@
     <string name="hnt_name">Name </string>
     <string name="hnt_pass">Password</string>
     <string name="txt_user">0984677477</string>
-   <string name="name_of_menu">Name of Menu</string>
+    <string name="name_of_menu">Name of Menu</string>
+    <string name="name_of_food">Name of Food</string>
     <string name="txt_user_sign_up">0984677477</string>
     <string name="txt_name">Kanana</string>
     <string name="txt_pass">1234</string>

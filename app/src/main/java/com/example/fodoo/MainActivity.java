@@ -3,6 +3,7 @@ package com.example.fodoo;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.fodoo.SignIn.*;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -19,6 +20,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 
 import android.view.View;
@@ -28,9 +30,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.fodoo.Common.Common;
+import com.example.fodoo.Model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
+
+import io.paperdb.Paper;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity  extends AppCompatActivity  {
+
+
+
     private static int SPLASH_SCREEN = 1000;
     Animation top_animation,bottom_animation;
     ImageView img_View;
@@ -38,9 +56,13 @@ public class MainActivity extends AppCompatActivity {
     Button sign,log;
 
 
+
    // Button btn_1,btn_2,btn;
    /* LocationManager locationManager;
     LocationListener locationListener;*/
+
+   FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+   DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
 
@@ -50,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        Paper.init(this);
+
 
 
         top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
@@ -88,7 +112,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
     }
+
+
 
       /*  btn.setOnClickListener(new View.OnClickListener() {
             @Override
