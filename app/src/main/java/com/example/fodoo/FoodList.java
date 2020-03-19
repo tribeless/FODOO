@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.fodoo.Interface.itemClickListener;
 import com.example.fodoo.Model.Category;
 import com.example.fodoo.Model.Food;
@@ -70,7 +71,8 @@ String CategoryId = "";
 
 
                 foodViewHolder.foodTextView.setText(food.getName());
-                Picasso.get().load(food.getImage()).into(foodViewHolder.foodImageView);
+               Picasso.get().load(food.getImage()).into(foodViewHolder.foodImageView);
+               // Glide.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.foodImageView);
 
                 final Food foodClicked = food;
                 foodViewHolder.setItemClickListener(new itemClickListener() {

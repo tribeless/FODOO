@@ -3,6 +3,7 @@ package com.example.fodoo;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.example.fodoo.Common.Common;
 import com.example.fodoo.Interface.itemClickListener;
 import com.example.fodoo.Model.Category;
@@ -114,7 +115,8 @@ public class Home extends AppCompatActivity {
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
 
                 menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
+               Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
+                //Glide.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
                 //final Category clickItem = category;
 
                 //item-click-listener class
