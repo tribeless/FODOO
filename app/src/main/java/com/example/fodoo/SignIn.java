@@ -34,18 +34,23 @@ public class SignIn extends AppCompatActivity {
     Button log_in ;
     private CheckBox checkBox;
 
+    private String phoneNum = "";
+    private String passwordNum = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Paper.init(this);
+
         phone_num  = (MaterialEditText)findViewById(R.id.phone_num);
         pass_word = (MaterialEditText)findViewById(R.id.pass_word);
         log_in = findViewById(R.id.log_in_btn);
         progress = findViewById(R.id.progressBar);
         checkBox = findViewById(R.id.checkBox);
 
+        Paper.init(this);
 
         //init database
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -57,17 +62,14 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Dialog
-                progress.setVisibility(View.VISIBLE);
-                //finish();
+                if(checkBox.isChecked()){
 
-                if(checkBox.isChecked())
-                {
-                    Paper.book().write(phone_num.getText().toString(),phone_num);
-                    Paper.book().write(Common.currentUser.getPassword(),pass_word);
-
+                    Paper.book().write(Common.USER_KEY,phone_num.getText().toString());
+                    Paper.book().write(Common.USER_PWD,pass_word.getText().toString());
                 }
 
+                //Dialog
+                progress.setVisibility(View.VISIBLE);
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -76,14 +78,17 @@ public class SignIn extends AppCompatActivity {
                         //Get user information
                         //check user exists
 
-                        if (dataSnapshot.child(phone_num.getText().toString()).exists()){
+                        phoneNum = phone_num.getText().toString();
+                        passwordNum = pass_word.getText().toString();
+
+                        if (dataSnapshot.child(phoneNum).exists()){
                             //if phone num exists, do the following
 
-                        User user = dataSnapshot.child(phone_num.getText().toString()).getValue(User.class);
+                        User user = dataSnapshot.child(phoneNum).getValue(User.class);
                         assert user != null;
 
                         //check if password is correct
-                        if(user.getPassword().equals(pass_word.getText().toString())){
+                        if(user.getPassword().equals(passwordNum)){
 
                             Intent homeIntent = new Intent(SignIn.this,Home.class);
                             Common.currentUser = user;

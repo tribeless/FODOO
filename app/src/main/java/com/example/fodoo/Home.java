@@ -9,9 +9,11 @@ import com.example.fodoo.Interface.itemClickListener;
 import com.example.fodoo.Model.Category;
 import com.example.fodoo.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -35,10 +37,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity
+{
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -49,6 +53,7 @@ public class Home extends AppCompatActivity {
    RecyclerView recyclerView;
    RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
+    FirebaseRecyclerOptions<Category> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,28 +114,40 @@ public class Home extends AppCompatActivity {
 
     private void loadMenu() {
 
+        options = new FirebaseRecyclerOptions.Builder<Category>().setQuery(category,Category.class).build();
 
-         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category) {
-            @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
+         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(options) {
+             @NonNull
+             @Override
+             public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                menuViewHolder.txtMenuName.setText(category.getName());
-               Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
-                //Glide.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
-                //final Category clickItem = category;
+                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item, parent, false);
+                 return new MenuViewHolder(view);
+             }
 
-                //item-click-listener class
-                menuViewHolder.setItemClickListener(new itemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodIntent = new Intent(Home.this,FoodList.class);
-                        foodIntent.putExtra("CategoryId",adapter.getRef(position).getKey());
-                        startActivity(foodIntent);
+             @Override
+             protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Category model) {
 
-                    }
-                });
-            }
+                 holder.txtMenuName.setText(model.getName());
+                 Picasso.get().load(model.getImage()).into(holder.imageView);
+                 //Glide.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
+                 //final Category clickItem = category;
+
+                 //item-click-listener class
+                 holder.setItemClickListener(new itemClickListener() {
+                     @Override
+                     public void onClick(View view, int position, boolean isLongClick) {
+                         Intent foodIntent = new Intent(Home.this,FoodList.class);
+                         foodIntent.putExtra("CategoryId",adapter.getRef(position).getKey());
+                         startActivity(foodIntent);
+
+                     }
+                 });
+             }
+
+
         };
+         adapter.startListening();
         recyclerView.setAdapter(adapter);
 
     }
@@ -167,4 +184,5 @@ public class Home extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

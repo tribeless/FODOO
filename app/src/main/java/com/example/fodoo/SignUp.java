@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import io.paperdb.Paper;
+
 public class SignUp extends AppCompatActivity {
 
     EditText phone_num,usr_name,usr_pass;
@@ -36,6 +38,7 @@ public class SignUp extends AppCompatActivity {
         sign_up = findViewById(R.id.sign_up_btn);
         new_Progress = findViewById(R.id.new_progressBar);
 
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference("user");
 
@@ -43,6 +46,8 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //progress bar
+
+
                 new_Progress.setVisibility(View.VISIBLE);
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -75,36 +80,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-       /* FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-        sign_up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        //check if number already exists
-
-                        if(dataSnapshot.child(phone_num.getText().toString()).exists()){
-
-                            Toast.makeText(SignUp.this,"User already exists",Toast.LENGTH_LONG).show();
-                        }else{
-
-                            User user = new User(usr_name.getText().toString(),usr_pass.getText().toString());
-                            databaseReference.child(phone_num.getText().toString()).setValue(user);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-        });*/
     }
 }
